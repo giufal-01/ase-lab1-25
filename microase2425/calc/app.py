@@ -1,5 +1,6 @@
 from flask import Flask, request, make_response, jsonify
-import random, time, os, threading
+import random, time, os, threading, requests
+
 
 app = Flask(__name__)
 
@@ -92,42 +93,12 @@ def reduce():
                     return make_response('Division by zero\n', 400)
                 res /= i
             response = make_response(jsonify(s=res), 200)
-        elif op == 'concat':
-            res = ""
-            for i in lst:
-                res += i
-            response = make_response(jsonify(s=res), 200)
         else:
             return make_response(f'Invalid operator: {op}', 400)
         save_last("reduce",(op,lst),res)
         return response
     else:
         return make_response('Invalid operator\n', 400)
-
-@app.route('/concat')
-def concat():
-    a = request.args.get('a', type=str)
-    b = request.args.get('b', type=str)
-    if a and b:
-        res = a+b
-        save_last("concat",(a,b),res)
-        return make_response(jsonify(s=res), 200)
-    else:
-        return make_response('Invalid input\n', 400)
-
-@app.route('/upper')
-def upper():
-    a = request.args.get('a', 0, type=str)
-    res = a.upper()
-    save_last("upper","("+a+")",res)
-    return make_response(jsonify(s=res), 200)
-
-@app.route('/lower')
-def lower():
-    a = request.args.get('a', 0, type=str)
-    res = a.lower()
-    save_last("lower","("+a+")",res)
-    return make_response(jsonify(s=res), 200)
 
 @app.route('/crash')
 def crash():
@@ -139,18 +110,16 @@ def crash():
     ret = str(request.host) + " crashed"
     return make_response(jsonify(s=ret), 200)
 
-@app.route('/last')
-def last():
-    try:
-        with open('last.txt', 'r') as f:
-            return make_response(jsonify(s=f.read()), 200)
-    except FileNotFoundError:
-        return make_response('No operations yet\n', 404)
-
-
+# mi permette di salvare su un mock l'ultima operazione per i test
+mock_save_last = None
 def save_last(op,args,res):
-    with open('last.txt', 'w') as f:
-            f.write(f'{op}{args}={res}')
+    if mock_save_last:
+        mock_save_last(op,args,res)
+    else:
+        timestamp = time.time()
+        payload = {'timestamp': timestamp, 'op': op, 'args': args, 'res': res}
+        requests.post('http://db-manager:5000/notify', json=payload)
+        
 
 if __name__ == '__main__':
     app.run(debug=True)
