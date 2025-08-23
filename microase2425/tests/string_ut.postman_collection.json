@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "98d4d444-db31-4c8a-9c1d-661acac030c1",
+		"name": "string_ut",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38771720"
+	},
+	"item": [
+		{
+			"name": "upper",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Upper test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({ \"s\": \"AAAA\" });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/upper?a=aaAa",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"upper"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "aaAa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upper num test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Upper num test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({ \"s\": \"0\" });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/upper?a=0",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"upper"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upper invalid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Upper invalid test\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.expect(pm.response.text()).to.include(\"Invalid input\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/upper",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"upper"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lower",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Lower test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({ \"s\": \"aaaa\" });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/lower?a=AAaa",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"lower"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "AAaa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lower num test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Lower num test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({ \"s\": \"0\" });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/lower?a=0",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"lower"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lower invalid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Lower invalid test\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.expect(pm.response.text()).to.include(\"Invalid input\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/lower",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"lower"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "concat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Lower 0 test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({ \"s\": \"aaaccc\" });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/concat?a=aaa&b=ccc",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"concat"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "aaa"
+						},
+						{
+							"key": "b",
+							"value": "ccc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "concat invalid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Random invalid test\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.expect(pm.response.text()).to.include(\"Invalid input\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/concat?a=aaa",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"concat"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "aaa"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

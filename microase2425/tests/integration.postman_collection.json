@@ -1,0 +1,667 @@
+{
+	"info": {
+		"_postman_id": "ab95d68b-5c7b-4153-ab5e-8ea8b88b3d3d",
+		"name": "integration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38771720"
+	},
+	"item": [
+		{
+			"name": "add",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Add test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({ \"s\": 1 });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/calc/add?a=1&b=0",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"calc",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "1"
+						},
+						{
+							"key": "b",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add bad params",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Add invalid test\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.expect(pm.response.text()).to.include(\"Invalid input\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/calc/add?a=1&b=aaa",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"calc",
+						"add"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "1"
+						},
+						{
+							"key": "b",
+							"value": "aaa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "div",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Div test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({ \"s\": 2.0 });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/calc/div?a=10&b=5",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"calc",
+						"div"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "10"
+						},
+						{
+							"key": "b",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "div by zero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Div by zero test\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.expect(pm.response.text()).to.include(\"Division by zero\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/calc/div?a=10&b=0",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"calc",
+						"div"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "10"
+						},
+						{
+							"key": "b",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mod",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Mod test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({ \"s\": 1 });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/calc/mod?a=10&b=3",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"calc",
+						"mod"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "10"
+						},
+						{
+							"key": "b",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mod by zero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Mod by zero test\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.expect(pm.response.text()).to.include(\"Division by zero\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/calc/mod?a=10&b=0",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"calc",
+						"mod"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "10"
+						},
+						{
+							"key": "b",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "random",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Random test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.s).to.be.above(0);\r",
+							"    pm.expect(jsonData.s).to.be.below(11);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/calc/random?a=1&b=10",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"calc",
+						"random"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "1"
+						},
+						{
+							"key": "b",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "random bad params",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Random invalid test\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.expect(pm.response.text()).to.include(\"Invalid input\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/calc/random?a=10&b=2",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"calc",
+						"random"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "10"
+						},
+						{
+							"key": "b",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upper",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Upper test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({ \"s\": \"AAAA\" });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/str/upper?a=aaAa",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"str",
+						"upper"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "aaAa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upper num test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Upper num test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({ \"s\": \"0\" });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/str/upper?a=0",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"str",
+						"upper"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upper invalid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Upper invalid test\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.expect(pm.response.text()).to.include(\"Invalid input\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/str/upper",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"str",
+						"upper"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lower",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Lower test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({ \"s\": \"aaaa\" });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/str/lower?a=AAaa",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"str",
+						"lower"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "AAaa"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lower invalid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Lower invalid test\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.expect(pm.response.text()).to.include(\"Invalid input\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/str/lower",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"str",
+						"lower"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lower num test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Lower num test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({ \"s\": \"0\" });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/str/lower?a=0",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"str",
+						"lower"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "concat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Lower 0 test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({ \"s\": \"aaaccc\" });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/str/concat?a=aaa&b=ccc",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"str",
+						"concat"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "aaa"
+						},
+						{
+							"key": "b",
+							"value": "ccc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "concat invalid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Random invalid test\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"    pm.expect(pm.response.text()).to.include(\"Invalid input\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/str/concat?a=aaa",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"str",
+						"concat"
+					],
+					"query": [
+						{
+							"key": "a",
+							"value": "aaa"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
