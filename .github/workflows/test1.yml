@@ -21,9 +21,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r microase2425/src/calc/requirements.txt
-        pip install -r microase2425/dbm/requirements.txt
-        pip install -r microase2425/gateway/requirements.txt
-        pip install -r microase2425/string/requirements.txt
+        pip install -r microase2425/src/dbm/requirements.txt
+        pip install -r microase2425/src/gateway/requirements.txt
+        pip install -r microase2425/src//string/requirements.txt
 
     - name: Run tests
       run: |
