@@ -1,22 +1,30 @@
 name: Python Application CI  
+
 on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: Check out the repository
       uses: actions/checkout@v4
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.12'
-    - name: Install dependencies
+
+    - name: Install dependencies for all services
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install -r microase2425/src/calc/requirements.txt
+        pip install -r microase2425/dbm/requirements.txt
+        pip install -r microase2425/gateway/requirements.txt
+        pip install -r microase2425/string/requirements.txt
+
     - name: Run tests
       run: |
         pip install pytest
